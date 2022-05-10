@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.thin {
+  font-weight: 300;
+}
+.toadd {
+  padding-bottom: 16px;
+  border-bottom: 2px solid #8080801f;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add {
+  margin: 5px;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+.cent {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-title {
+  font-weight: 300;
+}
+/* label {
+  margin-top: 0.5rem;
+} */
+
+.daterangepicker .drp-buttons .btn {
+  font-weight: 400 !important;
+}
+
+.grey {
+  color: grey;
+}

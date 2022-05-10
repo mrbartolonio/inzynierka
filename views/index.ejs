@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      <%= (typeof(title) !== 'undefined') ? title : 'Szkoła Podstawowa' %>
+    </title>
+    <link rel="stylesheet" href="./styl.css" />
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+  </head>
+  <body>
+    <%- (logged == 1)? include('navbar_logged',{ active:0 }) :
+    include('navbar',{ active:0 }) -%>
+    <!-- First Parallax Section -->
+    <div
+      class="container"
+      style="background: none; box-shadow: none; height: 50%"
+    >
+      <div class="row align-items-center h-100">
+        <div class="col-6 mx-auto">
+          <div
+            class="jumbotron"
+            style="
+              background-color: #44424229;
+              text-align: center;
+              font-size: 35px;
+              color: white;
+            "
+          >
+            Zapraszamy do nas!
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Add More Parallax Sections Here -->
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

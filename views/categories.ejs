@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      <%= (typeof(title) !== 'undefined') ? title : 'Szkoła Podstawowa' %>
+    </title>
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/material.min.css" />
+    <link rel="stylesheet" href="./css/notify.css" />
+    <link rel="stylesheet" href="./css/jquery-confirm.min.css" />
+  </head>
+  <body>
+    <%- include('navbar_logged',{ active:3 })-%>
+
+    <div class="container-fluid">
+      <div>
+        <hr />
+        <h1 class="thin" style="text-align: center">Kategorie</h1>
+      </div>
+      <div class="row">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Kategoria</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (var i = 0; i < data.length; i++) { %>
+            <tr id="tr_<%= data[i].id %>">
+              <td scope="row" id="id_<%= data[i].id %>"><%= data[i].id %></td>
+              <td class="toEdit" id="cat_<%= data[i].id %>">
+                <%= data[i].category %>
+              </td>
+              <td style="width: 15%; text-align: center">
+                <button
+                  type="button"
+                  class="btn btn-info btn-sm"
+                  onclick="edit('<%= data[i].id %>')"
+                >
+                  Edytuj
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm"
+                  onclick="remove('<%= data[i].id %>')"
+                >
+                  Usuń
+                </button>
+              </td>
+            </tr>
+
+            <% }; %>
+          </tbody>
+        </table>
+
+        <div class="col-md-12">
+          <hr />
+          <h3 style="text-align: center">Dodaj nową kategorię</h3>
+          <div>
+            <div>
+              <input
+                id="toAdd"
+                style="outline: none; width: 100%; margin-bottom: 30px"
+                type="text"
+                class="text-input"
+                placeholder="Nazwa kategorii"
+              />
+            </div>
+            <div>
+              <button type="button" class="btn btn-info btn-sm" onclick="add()">
+                Dodaj
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edytuj nazwę</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div>Nazwa:</div>
+                    <input class="form-control disp_name" />
+                    <input hidden class="form-control disp_id" />
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Odrzuć
+                </button>
+                <button type="button" class="btn btn-primary saveModal">
+                  Zapisz zmiany
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/material.min.js"></script>
+    <script src="./js/categories/categories.js"></script>
+    <script src="./js/notify.js"></script>
+    <script src="./js/jquery-confirm.min.js"></script>
+  </body>
+</html>

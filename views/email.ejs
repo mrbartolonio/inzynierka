@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      <%= (typeof(title) !== 'undefined') ? title : 'Szkoła Podstawowa' %>
+    </title>
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/material.min.css" />
+    <link rel="stylesheet" href="./css/notify.css" />
+    <link rel="stylesheet" href="./css/jquery-confirm.min.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+
+
+  </head>
+  <body>
+    <%- include('navbar_logged',{ active:6 })-%>
+
+    <div class="container-fluid">
+      <div>
+        <h1 class="thin" style="text-align: center; margin-top: 20px">
+          Wyślij wiadomość
+        </h1>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <label>Wybierz email<span style="color:grey">(w przypadki braku adresu wpisz go ręcznie)</span></label>
+          <select style="height: 28px;padding: 0 4px;" class="custom-select selectEmail">
+            <option value="-1" selected disabled>Wybierz email</option>
+
+            <% for (var i = 0; i < data.length; i++) { %>
+            <option><%= data[i].email %></option>
+            <% }; %>
+          </select>
+        </div>
+
+        <div class="col-sm-12"> <hr /></div>
+        <div class="col-sm-12"><label>Temat email'a:</label><input id="temat" style="outline: none; width: 100%; margin-bottom: 30px" type="text" class="text-input" placeholder="Temat"></div>
+        <div class="col-sm-12"><label>Treść:</label><textarea id="tresc"style="height: 400px;width: 100%;" class="custom-input" placeholder="Treść"></textarea>
+          <div class="col thin add">
+
+            <div class="cent">
+              <button class="fab bg-blue-500 color-white sendEmail">
+                <i class="icon-send"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+     
+    </div>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/material.min.js"></script>
+    <script src="./js/email/email.js"></script>
+    <script src="./js/notify.js"></script>
+    <script src="./js/jquery-confirm.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  </body>
+</html>

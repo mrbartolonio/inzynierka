@@ -1,0 +1,199 @@
+:root {
+  --light-gray: #dadce0;
+  --light-blue: #1b9ce2;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+body,
+html {
+  height: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-image: url('./jpg/bg.jpg');
+  background-size: cover; /* <------ */
+  background-repeat: no-repeat;
+  background-position: center center; /* optional, center the image */
+}
+
+/* Add more images for more sections */
+/* Remove Bottom Margin from Jumbotron */
+.jumbotron {
+  margin-bottom: 0;
+}
+
+#bg {
+  background: #659999; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #f4791f,
+    #659999
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #f4791f,
+    #659999
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#dane {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+table {
+  text-align: center;
+}
+.selected {
+  background: rgba(241, 181, 70, 0.671);
+}
+
+.callendar {
+  background-color: rgba(63, 63, 63, 0.7);
+  display: grid;
+  grid-template-columns: repeat(7, 9rem);
+  grid-template-rows: repeat(5, 3rem);
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
+  width: auto;
+  padding: 5px 5px 10px 5px;
+  clear: both;
+}
+
+.callendarHeader {
+  color: rgb(61, 182, 223);
+}
+
+.callendarBody {
+  color: white;
+  padding: 10px;
+}
+
+.day {
+  font-family: 'Ubuntu', sans-serif;
+  border-bottom: 1px solid var(--light-gray);
+  border-right: 1px solid var(--light-gray);
+  text-align: center;
+  padding-top: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 200ms, color 200ms;
+}
+.name {
+  padding-bottom: 5px;
+}
+
+.weekend {
+  color: var(--light-blue);
+}
+
+.selected {
+  background-color: var(--light-blue);
+  color: white;
+}
+
+.selectedRoom {
+  background-color: var(--light-blue);
+  color: white;
+}
+
+.marked {
+  background-color: #5fbdf0;
+  color: white;
+}
+.card {
+  float: left;
+  margin-right: 10px;
+  text-align: center;
+  overflow: auto;
+  max-height: 500px;
+}
+.card-body {
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.glowka {
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(187, 135, 38);
+}
+#title {
+  position: relative;
+  left: 0;
+  font-weight: bold;
+  text-align: center;
+}
+.profile {
+  text-align: center;
+}
+
+.profile .img {
+  font-size: 50px;
+}
+
+.profile h2 {
+  margin-bottom: 3px;
+  text-transform: capitalize;
+}
+
+.profile span {
+  display: block;
+  margin-bottom: 20px;
+  color: #999999;
+}
+
+.profile a {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  border: 1px solid #dc3545;
+  color: #dc3545;
+  border-radius: 3px;
+}
+
+.profile a:hover {
+  border-color: rgba(0, 0, 0, 0.1);
+  background-color: #dc3545;
+  color: #ffffff;
+}
+.container {
+  background-color: white;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 40px;
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
+  border-radius: 3px;
+}
+.succ {
+  background-color: rgba(39, 206, 17, 0.234);
+}
+
+#cont {
+  background-color: rgba(255, 255, 255, 0.63);
+  margin: 0 auto;
+  padding: 40px;
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
+  border-radius: 3px;
+}
+
+#test {
+  display: table;
+  margin: 0 auto;
+  border: 1px solid black;
+  border-style: none;
+}
+
+.disabledCal {
+  background-color: rgba(48, 48, 48, 0.199);
+}

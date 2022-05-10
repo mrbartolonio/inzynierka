@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      <%= (typeof(title) !== 'undefined') ? title : 'Szkoła Podstawowa' %>
+    </title>
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/material.min.css" />
+    <link rel="stylesheet" href="./css/notify.css" />
+    <link rel="stylesheet" href="./css/jquery-confirm.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <%- include('navbar',{ active:1 })-%>
+
+    <div class="container-fluid">
+      <div>
+        <hr />
+        <h1 class="thin" style="text-align: center">Sprawdź dostępność!</h1>
+      </div>
+      <div class="row">
+        <div class="col-sm-3" style="margin-bottom: 20px">
+          <label>Kategoria:</label>
+          <select
+            style="height: 28px; padding: 0 4px"
+            class="custom-select selectCat"
+          >
+            <option value="-1" selected disabled>Wybierz kategorię</option>
+
+            <% for (var i = 0; i < data.length; i++) { %>
+            <option value="<%= data[i].id %>"><%= data[i].category %></option>
+            <% }; %>
+          </select>
+        </div>
+        <div class="col-sm-4 items" style="margin-bottom: 20px">
+          <label>Przedmiot</label>
+          <select
+            disabled
+            style="height: 28px; padding: 0 4px"
+            class="custom-select selectItemSearch"
+            id="selectItem"
+          >
+            <option value="-1">Wybierz przedmiot</option>
+          </select>
+        </div>
+
+        <div class="col-sm-3">
+          <label>Wybierz zakres dat i sprawdź dostępność!</label>
+          <input type="text" id="datetopick" class="form-control" />
+        </div>
+        <div
+          class="col-sm-2"
+          style="
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            align-items: flex-end;
+          "
+        >
+          <button type="button" class="btn btn-dark searchInDB">
+            Wyszukaj!
+          </button>
+        </div>
+      </div>
+      <div class="col-md-12 toAddTable"></div>
+    </div>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/material.min.js"></script>
+    <script src="./js/ava/ava.js"></script>
+    <script src="./js/notify.js"></script>
+    <script src="./js/jquery-confirm.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  </body>
+</html>

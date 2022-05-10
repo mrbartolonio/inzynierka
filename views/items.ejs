@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      <%= (typeof(title) !== 'undefined') ? title : 'Szkoła Podstawowa' %>
+    </title>
+    <link rel="stylesheet" href="./styl.css" />
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/material.min.css" />
+    <link rel="stylesheet" href="./css/notify.css" />
+    <style>
+      body {
+        background-image: none;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('navbar_logged',{ active:3 })-%>
+
+    <div class="container-fluid">
+      <div>
+        <hr />
+        <h1 class="thin" style="text-align: center">Dodaj nowy asortyment</h1>
+        <hr />
+        <h2 style="text-align: center">
+          Zaimportuj przy użyciu pliku excel'a!
+          <a href="./example_items.xlsx">Przykładowy plik</a>
+        </h2>
+        <h3 style="text-align: center; color: red; margin: 0">
+          Pamiętaj! Nazwa kategorii musi się pokrywać z już istniejącą!
+        </h3>
+
+        <div class="input-group mb-3">
+          <div class="custom-file">
+            <input
+              type="file"
+              id="fileUpload"
+              accept=".xls,.xlsx"
+              class="custom-file-input"
+              id="inputGroupFile02"
+            />
+            <label class="custom-file-label" for="inputGroupFile02"
+              >Wybierz plik do zaimportowania</label
+            >
+          </div>
+          <div class="input-group-append">
+            <span class="input-group-text readfile" id="">Wczytaj</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="toadd">
+          <div class="col thin">
+            <input
+              style="outline: none; width: 100%"
+              type="text"
+              class="text-input"
+              name="name"
+              placeholder="Nazwa"
+            />
+          </div>
+          <div class="col thin newrow">
+            <input
+              style="outline: none; width: 100%"
+              type="text"
+              class="text-input"
+              name="code"
+              placeholder="Kod produktu"
+            />
+          </div>
+          <div class="col thin newrow">
+            <input
+              style="outline: none; width: 100%"
+              type="text"
+              class="text-input"
+              name="info"
+              placeholder="Informacje"
+            />
+          </div>
+          <div class="col thin newrow">
+            <textarea
+              style="outline: none; width: 100%"
+              class="text-input"
+              name="desc"
+              placeholder="Opis"
+              rows="1"
+            ></textarea>
+          </div>
+          <div class="col thin newrow">
+            <select name="cat" class="custom-select" id="selectItem">
+              <% for (var i = 0; i < data.length; i++) { %>
+              <option value="<%= data[i].id %>"><%= data[i].category %></option>
+              <% }; %>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col thin add">
+        <div class="cent">
+          <button class="button raised bg-green-500 color-white addDB">
+            Dodaj
+          </button>
+        </div>
+        <div class="cent">
+          <button class="fab bg-blue-500 color-white addRow">
+            <i class="icon-add"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/material.min.js"></script>
+    <script src="./js/add/add.js"></script>
+    <script src="./js/notify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.3/xlsx.full.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      <%= (typeof(title) !== 'undefined') ? title : 'Szkoła Podstawowa' %>
+    </title>
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/material.min.css" />
+    <link rel="stylesheet" href="./css/notify.css" />
+    <link rel="stylesheet" href="./css/jquery-confirm.min.css" />
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+  </head>
+  <body>
+    <%- include('navbar_logged',{ active:5 })-%>
+
+    <div class="container-fluid">
+      <div>
+        <hr />
+        <h1 class="thin" style="text-align: center">Lista Uczniów</h1>
+        <input
+          id="search"
+          style="outline: none; width: 100%; margin-bottom: 30px"
+          type="text"
+          class="text-input"
+          placeholder="Wyszukaj interesującą Cię frazę"
+        />
+      </div>
+      <div class="row">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">
+                # <i class="fa fa-sort" aria-hidden="true"></i>
+              </th>
+              <th scope="col">
+                Imię i nazwisko <i class="fa fa-sort" aria-hidden="true"></i>
+              </th>
+              <th scope="col">
+                PESEL <i class="fa fa-sort" aria-hidden="true"></i>
+              </th>
+              <th scope="col">
+                Klasa <i class="fa fa-sort" aria-hidden="true"></i>
+              </th>
+              <th scope="col">
+                Dodatkowe informacje
+                <i class="fa fa-sort" aria-hidden="true"></i>
+              </th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (var i = 0; i < data.length; i++) { %>
+            <tr id="tr_<%= data[i].id %>">
+              <td scope="row" id="id_<%= data[i].id %>"><%= data[i].id %></td>
+              <td id="name_<%= data[i].id %>"><%= data[i].name_surname %></td>
+              <td id="doc_<%= data[i].id %>"><%= data[i].document %></td>
+              <td id="class_<%= data[i].id %>"><%= data[i].klasa %></td>
+              <td id="info_<%= data[i].id %>"><%= data[i].info %></td>
+              <td style="width: 15%; text-align: center">
+                <button
+                  type="button"
+                  class="btn btn-info btn-sm"
+                  onclick="edit('<%= data[i].id %>')"
+                >
+                  Edytuj
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm"
+                  onclick="remove('<%= data[i].id %>')"
+                >
+                  Usuń
+                </button>
+              </td>
+            </tr>
+
+            <% }; %>
+          </tbody>
+        </table>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div style="padding-bottom: 15px" class="col-sm-4">
+                    <div>ID:</div>
+                    <input disabled class="form-control disp_id" />
+                  </div>
+                  <div style="padding-bottom: 15px" class="col-sm-8">
+                    <div>Imię i nazwisko</div>
+                    <input type="text" class="form-control disp_name" />
+                  </div>
+                  <div style="padding-bottom: 15px" class="col-sm-6">
+                    <label>PESEL:</label>
+                    <input type="text" class="form-control disp_doc" />
+                  </div>
+                  <div style="padding-bottom: 15px" class="col-sm-6">
+                    <label>Klasa:</label>
+                    <input type="text" class="form-control disp_class" />
+                  </div>
+                  <div style="padding-bottom: 15px" class="col-sm-12">
+                    <label>Dodatkowe informacje:</label>
+                    <input type="text" class="form-control disp_addon" />
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Odrzuć
+                </button>
+                <button type="button" class="btn btn-primary saveModal">
+                  Zapisz zmiany
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/material.min.js"></script>
+    <script src="./js/studentsmanage/studentsmanage.js"></script>
+    <script src="./js/notify.js"></script>
+    <script src="./js/jquery-confirm.min.js"></script>
+  </body>
+</html>

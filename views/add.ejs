@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      <%= (typeof(title) !== 'undefined') ? title : 'Szkoła Podstawowa' %>
+    </title>
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/material.min.css" />
+    <link rel="stylesheet" href="./css/notify.css" />
+    <link rel="stylesheet" href="./css/jquery-confirm.min.css" />
+    <link rel="stylesheet" href="./css/addreser/addreser.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"
+    />
+  </head>
+  <body>
+    <%- include('navbar_logged',{ active:1 })-%>
+
+    <div class="container-fluid">
+      <div>
+        <h1 class="thin" style="text-align: center; margin-top: 20px">
+          Dodaj wypożyczenie
+        </h1>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <label>Wybierz kategorię</label>
+          <select style="height: 28px;padding: 0 4px;" class="custom-select selectCat">
+            <option value="-1" selected disabled>Wybierz kategorię</option>
+
+            <% for (var i = 0; i < data.length; i++) { %>
+            <option value="<%= data[i].id %>"><%= data[i].name %></option>
+            <% }; %>
+          </select>
+        </div>
+        <div class="col-sm-4">
+          <label>Wybierz przedmiot</label>
+          <div class="items">  
+          <select disabled style="height: 28px;padding: 0 4px;" class="custom-select selectItemSearch" id="selectItem">
+            <option value="-1" selected disabled>Wybierz przedmiot</option>
+          </select></div>
+        
+
+        </div>
+        <div class="col-sm-4">
+          <label>Wybierz datę</label>
+         <div class="datatopick"> <input disabled type="text" id="datetopick" class="form-control" /></div>
+        </div>
+        <div class="col-sm-12"> <hr /></div>
+       
+        <div class="col-sm-6 infotoDis" style="display:none"><label>Kod przedmiotu</label><input disabled style="width: 100%" type="text" id="kod" class="text-input" ></div>
+        <div class="col-sm-6 infotoDis" style="display:none"><label>Dodatkowe informacje</label><input disabled style="width: 100%" type="text" id="ext" class="text-input" ></div>
+        </div>
+      </div>
+      <hr />
+      <div class="row toAddData" style="display: none;margin: 0;">
+        <!-- dane do dodania w js -->
+
+        <div class="col-md-6">
+          <label>Data rozpoczęcia wypożyczenia</label
+          ><input disabled type="date" id="startDate" class="form-control" />
+        </div>
+        <div class="col-md-6">
+          <label>Data zakończenia wypożyczenia</label
+          ><input disabled type="date" id="endDate" class="form-control" />
+        </div>
+        <div class="col-md-12">
+          <h2
+            class="thin"
+            style="text-align: center; margin-top: 20px; font-size: 1.5rem"
+          >
+            Wypełnij danymi osoby wypożyczającej
+          </h2>
+        </div>
+        <div class="col-md-6 class" style="margin-bottom: 20px">
+          <select style="height: 28px;padding: 0 4px;" class="custom-select selectKlasa">
+            <option value="-1" selected disabled>Wybierz klasę</option>
+
+            <% for (var i = 0; i < classes.length; i++) { %>
+            <option><%= classes[i].klasa %></option>
+            <% }; %>
+          </select>
+        </div>
+        <div class="col-md-6 student" style="margin-bottom: 20px">
+          <select disabled style="height: 28px;padding: 0 4px;" class="custom-select " id="selectstudent">
+            <option value="-1" selected disabled>Wybierz ucznia</option>
+          </select>
+        </div>
+        <div class="col-md-12"><hr style="width: 50%" /></div>
+        <div class="col-md-6" style="margin-bottom: 20px">
+          <input
+            style="width: 100%"
+            type="email"
+            id="email"
+            class="text-input"
+            placeholder="E-Mail"
+          />
+        </div>
+        <div class="col-md-6" style="margin-bottom: 20px; font-weight: 300">
+          <label class="container"
+            >Przypomnienie E-Mail
+            <input type="checkbox" id="email_check" />
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="col-md-12"><hr style="width: 50%" /></div>
+        <div class="col-md-6" style="margin-bottom: 20px">
+          <input disabled
+            style="width: 100%"
+            type="text"
+            id="doc"
+            class="text-input"
+            placeholder="PESEL"
+          />
+        </div>
+        <div class="col-md-6" style="margin-bottom: 20px">
+          <input disabled
+            style="width: 100%"
+            type="text"
+            id="add_info"
+            class="text-input"
+            placeholder="Dodatkowe informacje"
+          />
+        </div>
+        <div class="col-sm-12">
+          <label>Uwagi</label>
+          <textarea
+            style="height: 50px"
+            class="form-control uwagi"
+          ></textarea>
+        </div>
+
+        <div class="col thin add">
+          <div class="cent">
+            <button class="fab bg-red-500 color-white addNewRes">
+              <i class="icon-add"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/material.min.js"></script>
+    <script src="./js/addreser/addreser.js"></script>
+    <script src="./js/notify.js"></script>
+    <script src="./js/jquery-confirm.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  </body>
+</html>

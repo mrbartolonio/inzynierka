@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      <%= (typeof(title) !== 'undefined') ? title : 'Szkoła Podstawowa' %>
+    </title>
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/material.min.css" />
+    <link rel="stylesheet" href="./css/notify.css" />
+    <link rel="stylesheet" href="./css/jquery-confirm.min.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"
+    />
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <style>
+      label{
+    margin-bottom: 0; 
+    margin-top: 0.5rem;
+      }
+      .subheading, h2{
+        line-height: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('navbar_logged',{ active:2 })-%>
+
+    <div class="container-fluid">
+      <div>
+        <hr />
+        <h1 class="thin" style="text-align: center">
+          Zarządzaj wypożyczeniami
+        </h1>
+      </div>
+      <div class="row">
+        <div class="col-sm-3" style="margin-bottom: 20px">
+          <label>Kategoria:</label>
+          <select style="height: 28px;padding: 0 4px;" class="custom-select selectCat">
+            <option value="-1" selected disabled>Wybierz kategorię</option>
+
+            <% for (var i = 0; i < data.length; i++) { %>
+            <option value="<%= data[i].id %>"><%= data[i].category %></option>
+            <% }; %>
+          </select>
+       
+        </div>
+        <div class="col-sm-4 items" style="margin-bottom: 20px">
+          <label>Przedmiot</label>
+          <select disabled style="height: 28px;padding: 0 4px;" class="custom-select selectItemSearch" id="selectItem">
+            <option value="-1">Wybierz przedmiot</option>
+          </select>
+ 
+        </div>
+        <div class="col-sm-3" style="margin-bottom: 20px">
+          <label>Wybierz zakres dat</label>
+          <input type="text" id="datetopick" class="form-control" />
+        </div>
+        <div
+          class="col-sm-2"
+          style="
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            align-items: flex-end;
+          "
+        >
+          <button type="button" class="btn btn-dark searchInDB">
+            Wyszukaj!
+          </button>
+        </div>
+        <div class="col-md-12">
+          <input
+            id="search"
+            style="outline: none; width: 100%; margin-bottom: 30px;display: none;"
+            type="text"
+            class="text-input"
+            placeholder="Wyszukaj w tabeli"
+          />
+        </div>
+        <div class="col-md-12 toAddTable"></div>
+
+        <!-- Modal -->
+
+        <div
+          class="modal fade"
+          id="modalEdit"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                 Informacje
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <input type="hidden" id="idToDelete"/>
+                  <input type="hidden" id="item_id"/>
+                  <div class="col-sm-12">
+                    <h2 style="text-align: center">Wypożyczenie</h2>
+                  </div>
+                  <div class="col-sm-6">
+                    <label>Od:</label>
+                    <input disabled class="form-control disp_from" />
+                  </div>
+                  <div class="col-sm-6">
+                    <label>Do:</label>
+                    <input disabled class="form-control disp_to" />
+                  </div>
+                  <div class="col-sm-12">
+                    <h2 style="text-align: center">Dane przedmiotu</h2>
+                  </div>
+                  <div class="col-sm-12">
+                    <label>Nazwa</label>
+                    <input
+                      disabled
+                      type="text"
+                      class="form-control disp_name"
+                    />
+                  </div>
+                  <div class="col-sm-6">
+                    <label>Kod:</label>
+                    <input disabled class="form-control disp_kod" />
+                  </div>
+                  <div class="col-sm-6">
+                    <label>Kategoria:</label>
+                    <input disabled class="form-control disp_kategoria" />
+                  </div>
+                  <div class="col-sm-12">
+                    <label>Rozszerzone informacje:</label>
+                    <input disabled class="form-control disp_informacje" />
+                  </div>
+                  <div class="col-sm-12">
+                    <label>Opis:</label>
+                    <textarea  disabled style="height: 50px;"class="form-control disp_opis_item"></textarea>
+                  </div>
+                  <div class="col-sm-12">
+                    <hr />
+                    <h2 style="text-align: center">Dane wypożyczającego</h2>
+                  </div>
+                  <div class="col-sm-12">
+                    <label>Imię i nazwisko</label>
+                    <input disabled type="text" class="form-control disp_name_surname" />
+                  </div>
+                  <div class="col-sm-6">
+                    <label>Email</label>
+                    <input disabled type="email" class="form-control disp_email" />
+                  </div>
+                  <div class="col-sm-6">
+                    <label>Przypomnienie</label>
+                    <label class="container"
+                    >Wyślij: 
+                    <input disabled type="checkbox" id="email_check" />
+                    <span class="checkmark"></span>
+                  </label>
+                  </div>
+                  <div class="col-sm-6">
+                    <label>Klasa</label>
+                    <input disabled  type="text" class="form-control disp_klasa" />
+                  </div>
+                  <div class="col-sm-6">
+                    <label>PESEL</label>
+                    <input disabled type="text" class="form-control disp_nr"></input>
+                  </div>
+                  <div class="col-sm-12">
+                    <label>Opis:</label>
+                    <textarea  disabled style="height: 50px;"class="form-control disp_add_info"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Wyjdź
+                </button>
+                <button type="button" class="btn btn-danger delModal">
+                  Usuń wypożyczenie
+                </button>
+                <button id="test"type="button" class="btn btn-warning endModal">
+                  Zakończ wypożyczenie
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/material.min.js"></script>
+    <script src="./js/manage/manage.js"></script>
+    <script src="./js/notify.js"></script>
+    <script src="./js/jquery-confirm.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  </body>
+</html>

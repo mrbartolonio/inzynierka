@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Szkoła podstawowa Nr.2</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarText"
+    aria-controls="navbarText"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="<%= (active === 1) ? 'nav-item active ' : 'nav-item1'%>">
+        <a class="nav-link" href="/add">Dodaj wypożyczenie!</a>
+      </li>
+      <li class="<%= (active === 2) ? 'nav-item active' : 'nav-item2'%>">
+        <a class="nav-link" href="/manage">Zarządzaj wypożyczeniami</a>
+      </li>
+      <li class="nav-item dropdown<%= (active === 3) ? ' active' : ''%>">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Asortyment
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/items">Dodaj</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/itemsmanage">Zarządzaj</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/categories">Kategorie</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown<%= (active === 5) ? ' active' : ''%>">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Uczniowie
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/students">Dodaj</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/studentsmanage">Zarządzaj</a>
+        </div>
+      </li>
+      <li class="<%= (active === 6) ? 'nav-item active' : 'nav-item2'%>">
+        <a class="nav-link" href="/email">Wiadomości</a>
+      </li>
+      <li class="nav-item dropdown<%= (active === 3) ? ' active' : ''%>"></li>
+    </ul>
+
+    <span class="navbar-text"><%= (logged === 1)? `Witaj ${user}` : ''%></span>
+    <span class="navbar-text">
+      <a class="nav-link" href="<%= (logged === 1)?'/logout' : '/login'%>"
+        ><%= (logged === 1) ? 'Wyloguj się!' : 'Zaloguj się!'%></a
+      >
+    </span>
+  </div>
+</nav>
